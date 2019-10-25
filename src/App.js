@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Form from './components/Form';
 import Table from './components/Table';
 import './App.css';
-import { UserProvider } from './UserContext';
+import store from './store';
+
+import { Provider } from 'react-redux';
 
 function App() {
-  const [users, setUsers] = useState([]);
 
   return (
-    <UserProvider value={{ users, setUsers }}>
+    <Provider store={store} >
       <Container fluid className="h-100">
         <Row className="h-100">
           <Col className="col-4 h-100">
@@ -26,7 +27,7 @@ function App() {
           </Col>
         </Row>
       </Container>
-    </UserProvider>
+    </Provider>
   );
 }
 

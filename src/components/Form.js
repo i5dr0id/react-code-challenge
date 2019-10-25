@@ -1,29 +1,29 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import Calendar from 'react-calendar';
-import UserContext from '../UserContext';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../actions/users'
+
 
 const FormComponent = () => {
-  const { users, setUsers } = useContext(UserContext);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [birthday, setBirthday] = useState(new Date());
   const [age, setAge] = useState('');
   const [hobby, setHobby] = useState('');
 
+	const dispatch = useDispatch();
+
   const onSubmit = event => {
     event.preventDefault();
 
-    setUsers([
-      ...users,
-      {
-        firstName,
-        lastName,
-        birthday: birthday.toLocaleString('us').split(',')[0],
-        age,
-        hobby,
-      },
-    ]);
+		dispatch(addUser( {
+			firstName,
+			lastName,
+			birthday: birthday.toLocaleString('us').split(',')[0],
+			age,
+			hobby,
+		}))
 
     setFirstName('');
     setLastName('');

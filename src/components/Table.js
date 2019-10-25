@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux'
 import { Table } from 'react-bootstrap';
-import UserContext from '../UserContext';
 
 const TableComponent = () => {
-  const { users } = useContext(UserContext);
+	const users = useSelector((state)=> state.users)
   return (
     <Table striped bordered hover className="mt-2">
       <thead>
